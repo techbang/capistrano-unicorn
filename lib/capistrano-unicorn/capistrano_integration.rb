@@ -7,7 +7,7 @@ module CapistranoUnicorn
       'unicorn:start',
       'unicorn:stop',
       'unicorn:restart',
-      'unicorn:reload', 
+      'unicorn:reload',
       'unicorn:shutdown',
       'unicorn:add_worker',
       'unicorn:remove_worker'
@@ -141,12 +141,6 @@ module CapistranoUnicorn
                 #{unicorn_send_signal('USR2')};
               else
                 #{start_unicorn}
-              fi;
-
-              sleep 2; # in order to wait for the (old) pidfile to show up
-
-              if #{old_unicorn_is_running?}; then
-                #{unicorn_send_signal('QUIT', get_old_unicorn_pid)};
               fi;
             END
           end
